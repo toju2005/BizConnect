@@ -1,5 +1,5 @@
 
-const Contact = require("../models/contact.js");
+const Contact = require("../models/Contact.js");
 
 // CREATE CONTACT
 const createContact = async (req, res) => {
