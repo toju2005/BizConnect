@@ -12,25 +12,24 @@ const app = express();
 // -------------------- CORS CONFIGURATION --------------------
 
 const allowedOrigins = [
-    "https://bizconnect-rust-gamma.vercel.app",
+    "https://biz-connect-azure-iota.vercel.app",
+    "https://biz-connect-78qawpwhk-angshu-kar-mahapatras-projects.vercel.app",
     process.env.FRONTEND_URL,
 ].filter(Boolean);
 
 app.use(
     cors({
         origin: (origin, callback) => {
-            // Allow requests without an origin (e.g. Postman)
             if (!origin || allowedOrigins.includes(origin)) {
                 return callback(null, true);
             }
 
-            return callback(
-                new Error(`CORS blocked this origin: ${origin}`)
-            );
+            return callback(new Error("Not allowed by CORS"));
         },
         credentials: true,
     })
 );
+
 
 // -------------------- GENERAL MIDDLEWARE --------------------
 
