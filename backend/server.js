@@ -9,64 +9,85 @@ const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
-// Middleware
+// -------------------- CORS CONFIGURATION --------------------
+
 const allowedOrigins = [
-    "http://localhost:5173",
+    "https://bizconnect-rust-gamma.vercel.app",
     process.env.FRONTEND_URL,
 ].filter(Boolean);
 
-app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            return callback(null, true);
-        }
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            // Allow requests without an origin (e.g. Postman)
+            if (!origin || allowedOrigins.includes(origin)) {
+                return callback(null, true);
+            }
 
-        callback(new Error("Not allowed by CORS"));
-    },
-}));
+            return callback(
+                new Error(`CORS blocked this origin: ${origin}`)
+            );
+        },
+        credentials: true,
+    })
+);
+
+// -------------------- GENERAL MIDDLEWARE --------------------
 
 app.use(express.json());
 
-// Home route
+// -------------------- HOME ROUTE --------------------
+
 app.get("/", (req, res) => {
-    res.json({
+    res.status(200).json({
         message: "Welcome to BizConnect API",
         status: "Running",
     });
 });
 
-// Connect to MongoDB before handling API requests
+// -------------------- DATABASE CONNECTION --------------------
+
+// Connect to MongoDB before processing API requests
 app.use("/api", async (req, res, next) => {
     try {
         await connectDB();
         next();
     } catch (error) {
+        console.error("Database connection error:", error.message);
+
         next(error);
     }
 });
 
-// API routes
+// -------------------- API ROUTES --------------------
+
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/contacts", require("./routes/contactRoutes"));
 app.use("/api/ai", aiRoutes);
 
-// Unknown routes
+// -------------------- UNKNOWN ROUTES --------------------
+
 app.use((req, res) => {
     res.status(404).json({
         message: "API route not found",
     });
 });
 
-// Error handler
-app.use((error, req, res, next) => {
-    console.error(error);
+// -------------------- GLOBAL ERROR HANDLER --------------------
 
-    res.status(500).json({
-        message: "Internal Server Error",
+app.use((error, req, res, next) => {
+    console.error("Server Error:", error);
+
+    res.status(error.status || 500).json({
+        message:
+            error.message === "Not allowed by CORS"
+                ? "CORS error: Origin not allowed"
+                : "Internal Server Error",
     });
 });
 
-// Local development
+// -------------------- LOCAL DEVELOPMENT --------------------
+
 if (require.main === module) {
     const PORT = process.env.PORT || 5001;
 
@@ -75,5 +96,6 @@ if (require.main === module) {
     });
 }
 
-// Vercel export
+// -------------------- VERCEL EXPORT --------------------
+
 module.exports = app;
