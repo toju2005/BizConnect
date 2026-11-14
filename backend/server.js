@@ -1,20 +1,31 @@
 
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 
 const connectDB = require("./config/db");
 const aiRoutes = require("./routes/aiRoutes");
-dotenv.config();
 
 const app = express();
 
-// Database connection
+// Connect to MongoDB
 connectDB();
 
 // Middleware
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+
+        return callback(new Error("Not allowed by CORS"));
+    }
 }));
 
 app.use(express.json());
@@ -39,9 +50,14 @@ app.use((req, res) => {
     });
 });
 
-// Start server
-const PORT = process.env.PORT || 5001;
+// Local development only
+if (require.main === module) {
+    const PORT = process.env.PORT || 5001;
 
-app.listen(PORT, () => {
-    console.log(`BizConnect server running on port ${PORT}`);
-});
+    app.listen(PORT, () => {
+        console.log(`BizConnect server running on port ${PORT}`);
+    });
+}
+
+// Export for Vercel
+module.exports = app;
