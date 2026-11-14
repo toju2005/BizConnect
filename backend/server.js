@@ -12,10 +12,16 @@ const app = express();
 // -------------------- CORS CONFIGURATION --------------------
 
 const allowedOrigins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+
     "https://biz-connect-azure-iota.vercel.app",
     "https://biz-connect-78qawpwhk-angshu-kar-mahapatras-projects.vercel.app",
+
     process.env.FRONTEND_URL,
-].filter(Boolean);
+]
+    .filter(Boolean)
+    .map(origin => origin.trim().replace(/\/+$/, ""));
 
 app.use(
     cors({
@@ -24,12 +30,13 @@ app.use(
                 return callback(null, true);
             }
 
+            console.error("Blocked CORS origin:", origin);
+
             return callback(new Error("Not allowed by CORS"));
         },
         credentials: true,
     })
 );
-
 
 // -------------------- GENERAL MIDDLEWARE --------------------
 
@@ -46,14 +53,12 @@ app.get("/", (req, res) => {
 
 // -------------------- DATABASE CONNECTION --------------------
 
-// Connect to MongoDB before processing API requests
 app.use("/api", async (req, res, next) => {
     try {
         await connectDB();
         next();
     } catch (error) {
         console.error("Database connection error:", error.message);
-
         next(error);
     }
 });
@@ -72,7 +77,7 @@ app.use((req, res) => {
     });
 });
 
-// -------------------- GLOBAL ERROR HANDLER --------------------
+// -------------------- ERROR HANDLER --------------------
 
 app.use((error, req, res, next) => {
     console.error("Server Error:", error);
@@ -95,6 +100,6 @@ if (require.main === module) {
     });
 }
 
-// -------------------- VERCEL EXPORT --------------------
+// -------------------- EXPORT --------------------
 
 module.exports = app;
