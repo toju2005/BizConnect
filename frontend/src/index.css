@@ -1,0 +1,1172 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+/* ==============================
+   GLOBAL DESIGN SYSTEM
+================================ */
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #172033;
+  background: #f5f7ff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --primary: #6254e7;
+  --primary-dark: #4f46c8;
+  --secondary: #8b5cf6;
+  --surface: #ffffff;
+  --text-main: #172033;
+  --text-muted: #718096;
+  --border: #e8eaf3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(ellipse at 5% 0%, rgba(139, 92, 246, 0.09), transparent 32%),
+    radial-gradient(ellipse at 100% 15%, rgba(59, 130, 246, 0.07), transparent 30%),
+    #f5f7ff;
+}
+
+::selection {
+  background: #dcd6ff;
+  color: #312e81;
+}
+
+/* ==============================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f2fa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c5c2e7;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8176d9;
+}
+
+/* ==============================
+   HEADINGS
+================================ */
+
+h1, h2, h3, h4 {
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: -0.035em;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+h2 {
+  font-weight: 750;
+}
+
+/* ==============================
+   PREMIUM CARDS
+================================ */
+
+.bg-white.rounded-xl,
+.bg-white.rounded-2xl {
+  border: 1px solid rgba(226, 228, 242, 0.85);
+  box-shadow:
+    0 4px 12px rgba(38, 42, 86, 0.025),
+    0 16px 40px rgba(38, 42, 86, 0.045);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.bg-white.rounded-xl:hover,
+.bg-white.rounded-2xl:hover {
+  box-shadow:
+    0 8px 24px rgba(79, 70, 229, 0.07),
+    0 20px 45px rgba(38, 42, 86, 0.06);
+}
+
+/* ==============================
+   BUTTONS
+================================ */
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Primary buttons */
+.bg-blue-600 {
+  background: linear-gradient(135deg, #6254e7, #7968f4);
+  box-shadow: 0 5px 14px rgba(98, 84, 231, 0.20);
+}
+
+.bg-blue-600:hover {
+  background: linear-gradient(135deg, #5145d0, #6858e5);
+  box-shadow: 0 8px 20px rgba(98, 84, 231, 0.28);
+}
+
+/* ==============================
+   INPUTS AND FORMS
+================================ */
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: #26324a;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+input:not([type="checkbox"]),
+textarea,
+select {
+  border-color: #e1e5f0;
+  border-radius: 10px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #8175ed;
+  box-shadow: 0 0 0 4px rgba(129, 117, 237, 0.12);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #a0a8b9;
+}
+
+label {
+  color: #34405a;
+  font-weight: 600;
+}
+
+/* ==============================
+   TABLE DESIGN
+================================ */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead th {
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: #7a8299;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #f7f7ff;
+}
+
+tbody td {
+  color: #4b5870;
+  font-size: 13px;
+}
+
+/* ==============================
+   BADGES AND FEEDBACK
+================================ */
+
+.bg-green-100 {
+  border: 1px solid #c6f0dc;
+}
+
+.bg-red-100 {
+  border: 1px solid #ffd4d4;
+}
+
+.bg-blue-100 {
+  border: 1px solid #d9e5ff;
+}
+
+/* ==============================
+   ANIMATIONS
+================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+main {
+  animation: fadeInUp 0.45s ease both;
+}
+
+section {
+  animation: softFade 0.5s ease both;
+}
+
+/* ==============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .p-8 {
+    padding: 1.15rem;
+  }
+
+  table {
+    min-width: 650px;
+  }
+}
+
+/* ==============================
+   ACCESSIBILITY
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== BIZCONNECT PREMIUM VISUAL UPGRADE ===== */
+
+/* Main page background */
+.min-h-screen.bg-slate-50 {
+    background:
+      radial-gradient(circle at 10% 5%, #e8e7ff 0%, transparent 32%),
+      radial-gradient(circle at 95% 90%, #dceeff 0%, transparent 30%),
+      #f5f6ff !important;
+  }
+  
+  /* Main page headings */
+  .min-h-screen h1 {
+    color: #202044 !important;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+  }
+  
+  .min-h-screen h2 {
+    color: #29264d;
+  }
+  
+  /* Premium cards */
+  .min-h-screen .bg-white {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid #e5e4f5;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 30px rgba(65, 55, 130, 0.07);
+  }
+  
+  /* Buttons */
+  .min-h-screen button.bg-blue-600 {
+    background: linear-gradient(135deg, #6254e7, #9275f5) !important;
+    color: white;
+    border: none;
+    border-radius: 11px;
+    box-shadow: 0 6px 18px rgba(98, 84, 231, 0.25);
+  }
+  
+  .min-h-screen button.bg-blue-600:hover {
+    background: linear-gradient(135deg, #4939cb, #7658e8) !important;
+    box-shadow: 0 10px 25px rgba(98, 84, 231, 0.35);
+  }
+  
+  /* Other buttons */
+  .min-h-screen button.border {
+    border-color: #deddf0;
+    border-radius: 11px;
+    background-color: white;
+  }
+  
+  .min-h-screen button.border:hover {
+    background-color: #f1efff;
+  }
+  
+  /* Form controls */
+  .min-h-screen input:not([type="checkbox"]),
+  .min-h-screen textarea,
+  .min-h-screen select {
+    background-color: #fafaff;
+    border: 1px solid #dedff0;
+    border-radius: 11px;
+    padding: 12px;
+  }
+  
+  .min-h-screen input:focus,
+  .min-h-screen textarea:focus,
+  .min-h-screen select:focus {
+    border-color: #7768ed;
+    box-shadow: 0 0 0 4px rgba(119, 104, 237, 0.13);
+  }
+  
+  /* Tables */
+  .min-h-screen thead {
+    background: #f0efff !important;
+  }
+  
+  .min-h-screen tbody tr:hover {
+    background: #f5f3ff !important;
+  }
+  
+  .min-h-screen tbody td {
+    padding-top: 17px;
+    padding-bottom: 17px;
+  }
+  
+  /* Smooth animations */
+  .min-h-screen > div {
+    animation: bizconnectAppear 0.45s ease both;
+  }
+  
+  @keyframes bizconnectAppear {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+/* ===== PREMIUM BIZCONNECT APP SHELL ===== */
+
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f6fc;
+  }
+  
+  .app-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .app-topbar {
+    height: 82px;
+    flex-shrink: 0;
+    padding: 0 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid #e9e9f3;
+    backdrop-filter: blur(18px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  
+  .topbar-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: #9992c9;
+  }
+  
+  .topbar-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #202044;
+    margin-top: 3px;
+  }
+  
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  .topbar-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .status-dot {
+    height: 8px;
+    width: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #dcfce7;
+  }
+  
+  .topbar-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #eeeef6;
+    background: white;
+    color: #6b63a5;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+  }
+  
+  .topbar-avatar {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    color: white;
+    background: linear-gradient(135deg, #6254e7, #a178f5);
+    box-shadow: 0 5px 15px #6254e744;
+  }
+  
+  .app-content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .app-topbar {
+      height: 70px;
+      padding: 0 16px;
+    }
+  
+    .topbar-status {
+      display: none;
+    }
+  
+    .app-content {
+      width: 100%;
+    }
+  }
+  
+/* =====================================
+   BIZCONNECT PREMIUM SIDEBAR
+===================================== */
+
+.premium-sidebar {
+    width: 265px;
+    min-width: 265px;
+    min-height: 100vh;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 27px 18px 18px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: #ffffff;
+  
+    background:
+      radial-gradient(circle at 0% 0%, rgba(112, 83, 230, 0.20), transparent 35%),
+      linear-gradient(165deg, #15152d 0%, #101426 55%, #111827 100%);
+  
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  
+  /* Brand */
+  
+  .sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 7px;
+    margin-bottom: 35px;
+  }
+  
+  .brand-icon {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: white;
+  
+    background: linear-gradient(135deg, #7964f4, #a36cf6);
+  
+    box-shadow:
+      0 7px 22px rgba(125, 91, 244, 0.38),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  
+  .sidebar-brand h1 {
+    font-size: 19px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.7px;
+  }
+  
+  .sidebar-brand p {
+    font-size: 9px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #9690c2;
+    margin-top: 3px;
+  }
+  
+  /* Workspace card */
+  
+  .workspace-card {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 13px;
+    margin-bottom: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.055);
+  }
+  
+  .workspace-avatar {
+    height: 36px;
+    width: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    color: #c2b6ff;
+    background: rgba(123, 97, 255, 0.19);
+  }
+  
+  .workspace-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 3px;
+  }
+  
+  .workspace-info span {
+    color: #8987a9;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+  }
+  
+  .workspace-info strong {
+    color: #f2f1ff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .workspace-arrow {
+    color: #777692;
+  }
+  
+  /* Section label */
+  
+  .sidebar-section-label {
+    color: #777995;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+    padding: 0 12px;
+    margin-bottom: 13px;
+  }
+  
+  /* Navigation */
+  
+  .sidebar-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    position: relative;
+    padding: 13px 14px;
+    border-radius: 11px;
+    color: #a1a2bd;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+  
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
+  }
+  
+  .sidebar-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.075);
+    transform: translateX(3px);
+  }
+  
+  .sidebar-link.active {
+    color: white;
+  
+    background:
+      linear-gradient(
+        110deg,
+        rgba(115, 91, 240, 0.34),
+        rgba(135, 99, 244, 0.13)
+      );
+  
+    box-shadow: inset 0 0 0 1px rgba(165, 145, 255, 0.20);
+  }
+  
+  .sidebar-link.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    bottom: 9px;
+    width: 3px;
+    border-radius: 5px;
+    background: #a58aff;
+    box-shadow: 0 0 12px #9475ff;
+  }
+  
+  .sidebar-link.active svg {
+    color: #bbaaff;
+  }
+  
+  .sidebar-live-dot {
+    width: 6px;
+    height: 6px;
+    margin-left: auto;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 10px #a78bfa;
+  }
+  
+  /* Promo card */
+  
+  .sidebar-promo {
+    margin-top: auto;
+    margin-bottom: 24px;
+    padding: 17px 15px;
+    border-radius: 15px;
+  
+    background:
+      radial-gradient(circle at top right, rgba(181, 144, 255, 0.24), transparent 55%),
+      linear-gradient(140deg, #29234f, #24203e);
+  
+    border: 1px solid rgba(174, 153, 255, 0.17);
+  }
+  
+  .promo-icon {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    color: #e4d7ff;
+    background: rgba(157, 125, 255, 0.20);
+    margin-bottom: 12px;
+  }
+  
+  .sidebar-promo h3 {
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  
+  .sidebar-promo p {
+    color: #aaa5c9;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  
+  /* Account */
+  
+  .sidebar-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    padding-top: 17px;
+  }
+  
+  .sidebar-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 4px;
+  }
+  
+  .account-avatar {
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #7163e9, #ad72ed);
+  }
+  
+  .account-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+  
+  .account-details strong {
+    color: white;
+    font-size: 11px;
+  }
+  
+  .account-details span {
+    color: #8f91aa;
+    font-size: 10px;
+  }
+  
+  .account-status {
+    width: 7px;
+    height: 7px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 9px #4ade80;
+  }
+  
+  /* Logout */
+  
+  .sidebar-logout {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 13px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: transparent;
+    color: #aaa7c1;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .sidebar-logout:hover {
+    color: #ffaaaa;
+    background: rgba(239, 68, 68, 0.10);
+    border-color: rgba(239, 68, 68, 0.13);
+  }
+  
+  .sidebar-version {
+    text-align: center;
+    color: #666984;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    margin-top: 15px;
+  }
+  
+  /* Responsive sidebar */
+  
+  @media (max-width: 768px) {
+    .premium-sidebar {
+      width: 78px;
+      min-width: 78px;
+      padding: 22px 10px;
+      align-items: center;
+    }
+  
+    .sidebar-brand {
+      padding: 0;
+      justify-content: center;
+    }
+  
+    .sidebar-brand > div:last-child,
+    .workspace-card,
+    .sidebar-section-label,
+    .sidebar-link span,
+    .sidebar-promo,
+    .sidebar-account,
+    .sidebar-logout span,
+    .sidebar-version {
+      display: none;
+    }
+  
+    .sidebar-navigation {
+      width: 100%;
+    }
+  
+    .sidebar-link {
+      justify-content: center;
+      padding: 14px 8px;
+    }
+  
+    .sidebar-bottom {
+      width: 100%;
+      margin-top: auto;
+    }
+  
+    .sidebar-logout {
+      justify-content: center;
+    }
+  }
+  
+
+
+/* =====================================
+   BIZCONNECT - CRYSTAL GLASS THEME
+===================================== */
+
+:root {
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-surface: rgba(255, 255, 255, 0.58);
+  --glass-shadow: 0 12px 35px rgba(80, 75, 150, 0.08);
+  --glass-blur: 18px;
+}
+
+/* Ambient background */
+body {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(167, 139, 250, 0.22), transparent 35%),
+    radial-gradient(circle at 90% 15%, rgba(96, 165, 250, 0.18), transparent 35%),
+    radial-gradient(circle at 50% 90%, rgba(196, 181, 253, 0.20), transparent 40%),
+    linear-gradient(135deg, #f1f0ff, #eef5ff, #f8f5ff) !important;
+
+  background-attachment: fixed !important;
+}
+
+/* Main page backgrounds */
+.app-content {
+  background: transparent !important;
+}
+
+.min-h-screen.bg-slate-50 {
+  background: transparent !important;
+}
+
+/* Glass cards and panels */
+.bg-white {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow);
+
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Tables */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead {
+  background: rgba(255, 255, 255, 0.42) !important;
+}
+
+tbody tr {
+  transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+  background: rgba(139, 92, 246, 0.07) !important;
+}
+
+/* Inputs and text areas */
+input,
+select,
+textarea {
+  background: rgba(255, 255, 255, 0.58) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(148, 163, 184, 0.25) !important;
+  border-radius: 12px !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(139, 92, 246, 0.65) !important;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.10) !important;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  transition: all 0.25s ease;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+/* Glass page containers */
+.app-main {
+  background: transparent !important;
+}
+
+.app-topbar {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+/* Modals */
+.fixed.inset-0 > div {
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+/* Smooth page appearance */
+.app-content {
+  animation: glassFadeIn 0.45s ease;
+}
+
+@keyframes glassFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app-content {
+    padding: 14px;
+  }
+}
+
+/* ==========================================
+   BIZCONNECT - PREMIUM IRIDESCENT GLASS UI
+========================================== */
+
+:root {
+  --crystal-purple: #a78bfa;
+  --crystal-blue: #60a5fa;
+  --crystal-cyan: #67e8f9;
+  --crystal-pink: #f0abfc;
+}
+
+/* Colorful ambient background */
+body {
+  background:
+    radial-gradient(ellipse at 5% 15%, rgba(167, 139, 250, .42), transparent 38%),
+    radial-gradient(ellipse at 95% 10%, rgba(96, 165, 250, .38), transparent 35%),
+    radial-gradient(ellipse at 70% 90%, rgba(103, 232, 249, .30), transparent 40%),
+    radial-gradient(ellipse at 20% 85%, rgba(240, 171, 252, .30), transparent 35%),
+    linear-gradient(135deg, #e7ddff, #dcecff 50%, #f0e4ff) !important;
+
+  background-attachment: fixed !important;
+}
+
+/* Main workspace */
+.app-shell,
+.app-main,
+.app-content,
+.min-h-screen.bg-slate-50 {
+  background: transparent !important;
+}
+
+/* Glossy crystal cards */
+.app-content .bg-white {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, .76),
+      rgba(205, 190, 255, .40) 45%,
+      rgba(150, 210, 255, .36)
+    ) !important;
+
+  border: 1px solid rgba(255, 255, 255, .85) !important;
+
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.95),
+    inset 0 -1px 2px rgba(125,100,220,.12),
+    0 12px 35px rgba(93, 73, 180, .13),
+    0 3px 10px rgba(80, 150, 220, .08) !important;
+
+  border-radius: 18px !important;
+}
+
+/* Card hover glow */
+.app-content .bg-white:hover {
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,.95),
+    0 16px 40px rgba(110, 85, 220, .19),
+    0 0 18px rgba(125, 190, 255, .12) !important;
+}
+
+/* Glass tables */
+.app-content table thead {
+  background: linear-gradient(
+    100deg,
+    rgba(167,139,250,.30),
+    rgba(96,165,250,.27),
+    rgba(103,232,249,.22)
+  ) !important;
+}
+
+.app-content tbody tr {
+  background: rgba(255,255,255,.16);
+  transition: all .25s ease;
+}
+
+.app-content tbody tr:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(167,139,250,.22),
+    rgba(96,165,250,.18)
+  ) !important;
+}
+
+/* Glossy inputs */
+.app-content input,
+.app-content select,
+.app-content textarea {
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,.76),
+    rgba(218,208,255,.45)
+  ) !important;
+
+  border: 1px solid rgba(255,255,255,.9) !important;
+
+  box-shadow:
+    inset 0 2px 5px rgba(120,100,200,.06),
+    0 3px 10px rgba(110,90,180,.05);
+}
+
+/* Topbar crystal effect */
+.app-topbar {
+  background: linear-gradient(
+    110deg,
+    rgba(225,210,255,.78),
+    rgba(200,225,255,.78),
+    rgba(240,215,255,.78)
+  ) !important;
+
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+
+  border-bottom: 1px solid rgba(255,255,255,.8) !important;
+
+  box-shadow: 0 8px 30px rgba(100,80,180,.08);
+}
+
+/* Primary buttons */
+.app-content button.bg-blue-600,
+.app-content button.bg-purple-600 {
+  background: linear-gradient(
+    120deg,
+    #7554ed,
+    #9870f5,
+    #568de9
+  ) !important;
+
+  border: 1px solid rgba(255,255,255,.45) !important;
+  box-shadow: 0 6px 18px rgba(110,80,220,.28);
+}
+
+/* Purple and blue ambient highlights */
+.app-content h1 {
+  text-shadow: 0 2px 18px rgba(130,100,230,.12);
+}
+
+/* Smooth animation */
+.app-content {
+  animation: crystalReveal .5s ease;
+}
+
+@keyframes crystalReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Selection colour */
+::selection {
+  background: rgba(139,92,246,.28);
+  color: #31206f;
+}
