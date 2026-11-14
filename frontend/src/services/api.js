@@ -4,7 +4,7 @@ import axios from "axios";
 const API = axios.create({
   baseURL: import.meta.env.DEV
     ? "http://localhost:5001/api"
-    : "/api",
+    : "https://bizconnect-backend-pn6h.onrender.com/api",
 
   headers: {
     "Content-Type": "application/json",
@@ -23,6 +23,3 @@ API.interceptors.request.use((config) => {
 });
 
 export default API;
-
-
-
