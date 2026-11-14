@@ -8,13 +8,26 @@ const connectDB = async () => {
         return mongoose.connection;
     }
 
-    if (!process.env.MONGO_URI) {
+    const mongoURI = process.env.MONGO_URI?.trim();
+
+    if (!mongoURI) {
         throw new Error("MONGO_URI is missing");
+    }
+
+    // Check the URI without exposing credentials
+    const isValid = /^mongodb(\+srv)?:\/\//.test(mongoURI);
+
+    console.log("MongoDB URI loaded:", !!mongoURI);
+    console.log("MongoDB URI format valid:", isValid);
+    console.log("MongoDB URI scheme:", mongoURI.split(":")[0]);
+
+    if (!isValid) {
+        throw new Error("Invalid MONGO_URI format in environment variables");
     }
 
     if (!connectionPromise) {
         connectionPromise = mongoose
-            .connect(process.env.MONGO_URI, {
+            .connect(mongoURI, {
                 serverSelectionTimeoutMS: 10000,
             })
             .then(() => {
